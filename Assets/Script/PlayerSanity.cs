@@ -86,14 +86,11 @@ public class PlayerSanity : MonoBehaviour
         while (time < healDuration)
         {
             time += Time.deltaTime;
-
             // 1. 算出基礎的時間比例 (0 到 1)
             float t = time / healDuration;
-
             // 2. 【細節魔法】：套用 Ease-Out Cubic 曲線 (先快後慢)
             // 讓藥效一開始衝得快，快滿的時候柔和地慢下來
             float easeT = 1f - Mathf.Pow(1f - t, 3);
-
             // 3. 使用流暢的比例來計算真實的理智值
             currentSanity = Mathf.Lerp(startSanity, targetSanity, easeT);
 
@@ -157,5 +154,15 @@ public class PlayerSanity : MonoBehaviour
     {
         isInsane = true;
         Debug.Log("<color=red>[遊戲結束]</color> 玩家理智值歸零，徹底崩潰！");
+
+        // 【關鍵結合點】：呼叫 GameOverManager 的死亡演出！
+        if (GameOverManager.Instance != null)
+        {
+            GameOverManager.Instance.TriggerGameOver();
+        }
+        else
+        {
+            Debug.LogError("找不到 GameOverManager！請確定場景中有物件掛載了 GameOverManager 腳本。");
+        }
     }
 }

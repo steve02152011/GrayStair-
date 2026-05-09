@@ -365,6 +365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
   interactRange: 3
   interactKey: 102
+  promptText: {fileID: 0}
 --- !u!114 &70167379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +402,8 @@ MonoBehaviour:
   dropKey: 323
   manualRotateKey: 324
   manualRotateSensitivity: 3
+  grabPromptText: {fileID: 0}
+  highlightColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
 --- !u!114 &70167381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,43 +860,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &172063519
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Auto_Mirror_RT_Mirror_Cube (1)
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 512
-  m_Height: 512
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &172655046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,7 +1555,10 @@ MonoBehaviour:
   openOffset: {x: 0, y: 3, z: 0}
   openRotationOffset: {x: 0, y: 90, z: 0}
   invertPushDirection: 0
+  speedMode: 0
   openSpeed: 2
+  closeSpeed: 5
+  isOpen: 0
 --- !u!65 &248949714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1794,6 +1763,11 @@ MonoBehaviour:
   isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
+  enableDynamicLights: 1
+  lightColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lightIntensity: 2
+  lightRange: 2
+  enableLightShadows: 0
 --- !u!120 &274554040
 LineRenderer:
   serializedVersion: 3
@@ -2024,9 +1998,7 @@ MonoBehaviour:
   hasPickedUp: 0
   firePoint: {fileID: 486181771}
   laserRange: 50
-  laserHitMask:
-    serializedVersion: 2
-    m_Bits: 129
+  maxBounces: 3
   maxBattery: 100
   currentBattery: 0
   drainRate: 2
@@ -2914,60 +2886,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &379291052
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Universal Render Pipeline/Unlit
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseMap:
-        m_Texture: {fileID: 172063519}
-        m_Scale: {x: -1, y: 1}
-        m_Offset: {x: 1, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
-    - _Blend: 0
-    - _BlendOp: 0
-    - _Cull: 2
-    - _Cutoff: 0.5
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _QueueOffset: 0
-    - _SampleGI: 0
-    - _SrcBlend: 1
-    - _SrcBlendAlpha: 1
-    - _Surface: 0
-    - _XRMotionVectorsPass: 1
-    - _ZWrite: 1
-    m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &391405263
 GameObject:
   m_ObjectHideFlags: 0
@@ -3918,7 +3836,10 @@ MonoBehaviour:
   openOffset: {x: 0, y: 0, z: 1}
   openRotationOffset: {x: 0, y: 90, z: 0}
   invertPushDirection: 0
+  speedMode: 0
   openSpeed: 2
+  closeSpeed: 5
+  isOpen: 0
 --- !u!65 &686535521
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4123,7 +4044,10 @@ MonoBehaviour:
   openOffset: {x: 0, y: 0, z: -1}
   openRotationOffset: {x: 0, y: 90, z: 0}
   invertPushDirection: 0
+  speedMode: 0
   openSpeed: 2
+  closeSpeed: 5
+  isOpen: 0
 --- !u!65 &711949869
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5034,7 +4958,10 @@ MonoBehaviour:
   openOffset: {x: 0, y: 3, z: 0}
   openRotationOffset: {x: 0, y: 90, z: 0}
   invertPushDirection: 0
+  speedMode: 0
   openSpeed: 2
+  closeSpeed: 5
+  isOpen: 0
 --- !u!65 &803059300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5198,7 +5125,10 @@ MonoBehaviour:
   openOffset: {x: 0, y: 3, z: 0}
   openRotationOffset: {x: 0, y: 90, z: 0}
   invertPushDirection: 0
+  speedMode: 0
   openSpeed: 5
+  closeSpeed: 5
+  isOpen: 0
 --- !u!4 &816092407
 Transform:
   m_ObjectHideFlags: 0
@@ -5754,6 +5684,11 @@ MonoBehaviour:
   isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
+  enableDynamicLights: 1
+  lightColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lightIntensity: 2
+  lightRange: 2
+  enableLightShadows: 0
 --- !u!120 &870116867
 LineRenderer:
   serializedVersion: 3
@@ -7083,6 +7018,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027231461}
   m_CullTransparentMesh: 1
+--- !u!84 &1033785715
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Auto_Mirror_RT_Mirror_Quad
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 256
+  m_Height: 256
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &1038952928
 GameObject:
   m_ObjectHideFlags: 0
@@ -7344,6 +7316,60 @@ Transform:
   - {fileID: 1835188875}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -366.728, z: 0}
+--- !u!21 &1086279078
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Universal Render Pipeline/Unlit
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 1033785715}
+        m_Scale: {x: -1, y: 1}
+        m_Offset: {x: 1, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AddPrecomputedVelocity: 0
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendOp: 0
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _QueueOffset: 0
+    - _SampleGI: 0
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
+    - _XRMotionVectorsPass: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &1100101333
 GameObject:
   m_ObjectHideFlags: 0
@@ -8023,6 +8049,11 @@ MonoBehaviour:
   isLaserOn: 1
   maxDistance: 100
   maxBounces: 10
+  enableDynamicLights: 1
+  lightColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lightIntensity: 2
+  lightRange: 2
+  enableLightShadows: 0
 --- !u!120 &1143135306
 LineRenderer:
   serializedVersion: 3
@@ -9351,60 +9382,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1362418868
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Universal Render Pipeline/Unlit
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseMap:
-        m_Texture: {fileID: 1893097420}
-        m_Scale: {x: -1, y: 1}
-        m_Offset: {x: 1, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
-    - _Blend: 0
-    - _BlendOp: 0
-    - _Cull: 2
-    - _Cutoff: 0.5
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _QueueOffset: 0
-    - _SampleGI: 0
-    - _SrcBlend: 1
-    - _SrcBlendAlpha: 1
-    - _Surface: 0
-    - _XRMotionVectorsPass: 1
-    - _ZWrite: 1
-    m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &1368726436
 GameObject:
   m_ObjectHideFlags: 0
@@ -9517,6 +9494,43 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368726436}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &1368837678
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Auto_Mirror_RT_Mirror_Cube (1)
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 512
+  m_Height: 512
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &1387625950 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d31348c67dbdcab4289929e39118f596, type: 3}
@@ -9741,6 +9755,11 @@ MonoBehaviour:
   isLaserOn: 1
   maxDistance: 100
   maxBounces: 10
+  enableDynamicLights: 1
+  lightColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lightIntensity: 2
+  lightRange: 2
+  enableLightShadows: 0
 --- !u!120 &1412326365
 LineRenderer:
   serializedVersion: 3
@@ -10314,6 +10333,11 @@ MonoBehaviour:
   isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
+  enableDynamicLights: 1
+  lightColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lightIntensity: 2
+  lightRange: 2
+  enableLightShadows: 0
 --- !u!120 &1524713131
 LineRenderer:
   serializedVersion: 3
@@ -10657,7 +10681,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 379291052}
+  - {fileID: 1684925603}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11283,6 +11307,11 @@ MonoBehaviour:
   isLaserOn: 1
   maxDistance: 100
   maxBounces: 10
+  enableDynamicLights: 1
+  lightColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lightIntensity: 2
+  lightRange: 2
+  enableLightShadows: 0
 --- !u!120 &1664603124
 LineRenderer:
   serializedVersion: 3
@@ -11600,6 +11629,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1684925603
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Universal Render Pipeline/Unlit
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 1368837678}
+        m_Scale: {x: -1, y: 1}
+        m_Offset: {x: 1, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AddPrecomputedVelocity: 0
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendOp: 0
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _QueueOffset: 0
+    - _SampleGI: 0
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
+    - _XRMotionVectorsPass: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &1692481847
 GameObject:
   m_ObjectHideFlags: 0
@@ -11705,7 +11788,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1362418868}
+  - {fileID: 1086279078}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12486,43 +12569,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1387625951}
   m_SourcePrefab: {fileID: 100100000, guid: d31348c67dbdcab4289929e39118f596, type: 3}
---- !u!84 &1893097420
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Auto_Mirror_RT_Mirror_Quad
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 256
-  m_Height: 256
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &1932268310
 GameObject:
   m_ObjectHideFlags: 0
@@ -12592,6 +12638,11 @@ MonoBehaviour:
   isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
+  enableDynamicLights: 1
+  lightColor: {r: 1, g: 0.5, b: 0, a: 1}
+  lightIntensity: 2
+  lightRange: 2
+  enableLightShadows: 0
 --- !u!120 &1939363835
 LineRenderer:
   serializedVersion: 3
