@@ -2,51 +2,93 @@ using UnityEngine;
 
 public class BridgeController : MonoBehaviour
 {
-    [Header("橋樑設定")]
-    [Tooltip("橋樑完全延伸時的最大長度 (向前長多少公尺)")]
+    // 定義延伸方向的種類
+    public enum ExtendDirection
+    {
+        Forward,  // 正 Z
+        Backward, // 負 Z
+        Right,    // 正 X
+        Left,     // 負 X
+        Up,       // 正 Y
+        Down      // 負 Y
+    }
+
+    [Header("橋樑延伸設定")]
+    [Tooltip("選擇橋要往哪個方向伸長")]
+    public ExtendDirection extendDirection = ExtendDirection.Forward;
+
+    [Tooltip("橋樑完全延伸時的最大長度")]
     public float maxBridgeLength = 10f;
 
     [Tooltip("橋樑延伸與收回的速度")]
     public float extendSpeed = 5f;
 
-    private float currentLength = 0f; // 目前的長度 (預設為0)
-    private bool isExtending = false; // 目前是伸長還是收回狀態？
+    private float currentLength = 0f;
+    private bool isExtending = false;
 
-    private Vector3 initialScale; // 記憶一開始的寬度和厚度
+    private Vector3 initialScale;
+    private Vector3 initialPosition;
 
     void Start()
     {
-        // 記錄初始的 X 和 Y 縮放值 (確保你的橋維持原本的寬度跟厚度)
+        // 記錄初始狀態
         initialScale = transform.localScale;
+        initialPosition = transform.localPosition;
 
-        // 遊戲一開始，強制把橋的長度設為 0 (隱藏狀態)
         currentLength = 0f;
         UpdateBridgeTransform();
     }
 
     void Update()
     {
-        // 決定目標長度：如果是啟動狀態，目標就是 maxBridgeLength；否則就是 0
         float targetLength = isExtending ? maxBridgeLength : 0f;
-
-        // 使用 Lerp 讓數值平滑過渡，產生「生長」的動畫感
         currentLength = Mathf.Lerp(currentLength, targetLength, Time.deltaTime * extendSpeed);
-
-        // 隨時更新橋的大小和位置
         UpdateBridgeTransform();
     }
 
-    private void UpdateBridgeTransform()
+    void UpdateBridgeTransform()
     {
-        // 1. 改變 Z 軸的縮放 (也就是長度)
-        transform.localScale = new Vector3(initialScale.x, initialScale.y, currentLength);
+        Vector3 newScale = initialScale;
+        Vector3 offset = Vector3.zero;
 
-        // 2. 【單向延伸的數學魔法】：把位置往前推「長度的一半」
-        // 這樣起點就永遠會固定在同一個地方！
-        transform.localPosition = new Vector3(0, 0, currentLength / 2f);
+        // 根據選擇的方向，決定縮放哪一個軸，以及位移的方向
+        switch (extendDirection)
+        {
+            case ExtendDirection.Forward:
+                newScale.z = currentLength;
+                offset = transform.forward * (currentLength / 2f);
+                break;
+            case ExtendDirection.Backward:
+                newScale.z = currentLength;
+                offset = -transform.forward * (currentLength / 2f);
+                break;
+            case ExtendDirection.Right:
+                newScale.x = currentLength;
+                offset = transform.right * (currentLength / 2f);
+                break;
+            case ExtendDirection.Left:
+                newScale.x = currentLength;
+                offset = -transform.right * (currentLength / 2f);
+                break;
+            case ExtendDirection.Up:
+                newScale.y = currentLength;
+                offset = transform.up * (currentLength / 2f);
+                break;
+            case ExtendDirection.Down:
+                newScale.y = currentLength;
+                offset = -transform.up * (currentLength / 2f);
+                break;
+        }
+
+        // 套用縮放
+        transform.localScale = newScale;
+
+        // 【關鍵邏輯】：修正位置，讓橋看起來是從一端「長」出來，而不是從中心點變大
+        // 我們將初始位置加上長度一半的位移
+        transform.position = initialPosition + offset;
     }
 
-    // 提供給雷射感應器呼叫的公開方法 (跟門一模一樣！)
+    // 讓雷射接收器或按鈕呼叫
     public void SetBridgeState(bool state)
     {
         isExtending = state;
