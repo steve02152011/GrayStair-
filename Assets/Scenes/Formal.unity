@@ -794,6 +794,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &42358513
 MonoBehaviour:
@@ -3112,6 +3114,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &85825129
 MonoBehaviour:
@@ -3213,8 +3217,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.031731833, y: 0.0928545, z: 0.83519346}
+  m_Center: {x: -0.013569792, y: 0.003531682, z: 0.2757815}
 --- !u!114 &86321802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4304,6 +4308,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &119485150
 MonoBehaviour:
@@ -7207,6 +7213,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &193276781
 MonoBehaviour:
@@ -7402,7 +7410,6 @@ GameObject:
   - component: {fileID: 208752837}
   - component: {fileID: 208752836}
   - component: {fileID: 208752835}
-  - component: {fileID: 208752834}
   m_Layer: 0
   m_Name: LaserPoint4
   m_TagString: Untagged
@@ -7425,20 +7432,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4578962514646197844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &208752834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 208752832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df48bf4276659af488285f6a3425340f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ManualLaser
-  targetLaser: {fileID: 208752835}
-  visualFeedback: {fileID: 0}
 --- !u!114 &208752835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7451,7 +7444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104961ea9bb2fb042a650ac1e04b7c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserEmitter
-  isLaserOn: 1
+  isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
   enableDynamicLights: 1
@@ -8162,8 +8155,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.04106206, y: 0.11896697, z: 0.8596866}
+  m_Center: {x: -0.01715471, y: 0.00018339956, z: 0.28803316}
 --- !u!114 &233193039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9954,6 +9947,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &274485459
 MonoBehaviour:
@@ -10097,8 +10092,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.038444668, y: 0.10231031, z: 0.82807785}
+  m_Center: {x: -0.015517241, y: 0.0048500183, z: 0.27222952}
 --- !u!114 &283730684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10332,8 +10327,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.037603118, y: 0.08625358, z: 0.8163317}
+  m_Center: {x: -0.014800696, y: 0.00027357857, z: 0.2663554}
 --- !u!114 &288030753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10629,8 +10624,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.03902013, y: 0.10025519, z: 0.914638}
+  m_Center: {x: -0.014576639, y: -0.0024748135, z: 0.31550986}
 --- !u!114 &295692429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11402,6 +11397,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &314692721
 MonoBehaviour:
@@ -15005,8 +15002,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.03666801, y: 0.11748836, z: 0.83710986}
+  m_Center: {x: -0.014726335, y: 0.00047244987, z: 0.27674493}
 --- !u!114 &413285549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15063,6 +15060,67 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.32586047, y: 10.923607, z: 0.41530403}
   m_Center: {x: -0.00498727, y: -0.4802445, z: 0.5423023}
+--- !u!1001 &417288987
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 191.873
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.324
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -260.37955
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058969947795722353, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: targetLaser
+      value: 
+      objectReference: {fileID: 208752835}
+    - target: {fileID: 5635563958667512178, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_Name
+      value: Button4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
 --- !u!1 &418809954
 GameObject:
   m_ObjectHideFlags: 0
@@ -16293,7 +16351,6 @@ GameObject:
   - component: {fileID: 455612226}
   - component: {fileID: 455612225}
   - component: {fileID: 455612224}
-  - component: {fileID: 455612223}
   m_Layer: 0
   m_Name: LaserPoint2
   m_TagString: Untagged
@@ -16316,20 +16373,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1908308753270579622}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &455612223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455612221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df48bf4276659af488285f6a3425340f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ManualLaser
-  targetLaser: {fileID: 455612224}
-  visualFeedback: {fileID: 0}
 --- !u!114 &455612224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16342,7 +16385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104961ea9bb2fb042a650ac1e04b7c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserEmitter
-  isLaserOn: 1
+  isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
   enableDynamicLights: 1
@@ -16605,8 +16648,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.042383034, y: 0.10804379, z: 0.84452933}
+  m_Center: {x: -0.018629475, y: -0.00440987, z: 0.28045475}
 --- !u!114 &456609770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17063,6 +17106,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloatingObject
   floatHeight: 0.2
   floatSpeed: 1.75
+--- !u!1001 &473261429
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 169.25165
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.641
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -255.688
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058969947795722353, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: targetLaser
+      value: 
+      objectReference: {fileID: 1239308888}
+    - target: {fileID: 5635563958667512178, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_Name
+      value: Button5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
 --- !u!1 &475411178
 GameObject:
   m_ObjectHideFlags: 0
@@ -17766,7 +17870,7 @@ Transform:
   m_GameObject: {fileID: 492853571}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0046138605, z: -0, w: -0.9999894}
-  m_LocalPosition: {x: 182.603, y: 0.97, z: -258.943}
+  m_LocalPosition: {x: 230.63, y: 0.97, z: -260.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20060,6 +20164,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &553689048
 MonoBehaviour:
@@ -22154,8 +22260,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.03474175, y: 0.0992709, z: 0.837688}
+  m_Center: {x: -0.014423244, y: 0.0026516425, z: 0.27703762}
 --- !u!114 &617537602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22548,6 +22654,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &628674432
 MonoBehaviour:
@@ -22649,8 +22757,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.03546945, y: 0.079599634, z: 0.84072363}
+  m_Center: {x: -0.013433544, y: 0.00043942654, z: 0.27855262}
 --- !u!114 &629557517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23030,6 +23138,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!1 &638106726
 GameObject:
@@ -24679,6 +24789,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &695876566
 MonoBehaviour:
@@ -25768,6 +25880,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &725228387
 MonoBehaviour:
@@ -26398,6 +26512,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &747095676
 MonoBehaviour:
@@ -26694,6 +26810,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &757039593
 MonoBehaviour:
@@ -28382,6 +28500,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &794183436
 MonoBehaviour:
@@ -28475,6 +28595,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &796590529
 MonoBehaviour:
@@ -28859,6 +28981,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &798567251
 MonoBehaviour:
@@ -29286,6 +29410,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &824585585
 MonoBehaviour:
@@ -30424,6 +30550,67 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.07411756, y: 1.1768754, z: 0.07181662}
   m_Center: {x: -0.000000022059856, y: -0.000015265421, z: 0.651427}
+--- !u!1001 &873876279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 227.4063
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.318
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -238.8081
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058969947795722353, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: targetLaser
+      value: 
+      objectReference: {fileID: 455612224}
+    - target: {fileID: 5635563958667512178, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_Name
+      value: Button2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
 --- !u!1 &874244657
 GameObject:
   m_ObjectHideFlags: 0
@@ -31028,11 +31215,13 @@ MonoBehaviour:
   openOffset: {x: 0, y: 3, z: 0}
   openRotationOffset: {x: 0, y: 90, z: 0}
   invertPushDirection: 0
-  isOneWayDoor: 0
+  isOneWayDoor: 1
   canOpenFromFrontOnly: 1
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &899155849
 MonoBehaviour:
@@ -31134,8 +31323,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.031692944, y: 0.09400593, z: 0.7908206}
+  m_Center: {x: -0.01857185, y: -0.003274091, z: 0.25360012}
 --- !u!114 &899274159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31169,8 +31358,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.004366009, y: 0.09250384, z: 0.45073995}
-  m_Center: {x: 0.0035232767, y: -0.0012221147, z: 0.43969706}
+  m_Size: {x: 0.0030032892, y: 0.09250384, z: 0.45073995}
+  m_Center: {x: 0.0042046355, y: -0.0012221136, z: 0.43969703}
 --- !u!1 &900083532
 GameObject:
   m_ObjectHideFlags: 0
@@ -31340,6 +31529,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &905657367
 MonoBehaviour:
@@ -32908,6 +33099,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &947405313
 MonoBehaviour:
@@ -34060,6 +34253,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1015277734
 MonoBehaviour:
@@ -36471,6 +36666,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1098850607
 MonoBehaviour:
@@ -37083,6 +37280,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1117562915
 MonoBehaviour:
@@ -38675,7 +38874,6 @@ GameObject:
   - component: {fileID: 1163450353}
   - component: {fileID: 1163450352}
   - component: {fileID: 1163450351}
-  - component: {fileID: 1163450350}
   m_Layer: 0
   m_Name: LaserPoint3
   m_TagString: Untagged
@@ -38698,20 +38896,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5071273515608472824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1163450350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163450348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df48bf4276659af488285f6a3425340f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ManualLaser
-  targetLaser: {fileID: 1163450351}
-  visualFeedback: {fileID: 0}
 --- !u!114 &1163450351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38724,7 +38908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104961ea9bb2fb042a650ac1e04b7c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserEmitter
-  isLaserOn: 1
+  isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
   enableDynamicLights: 1
@@ -41660,7 +41844,6 @@ GameObject:
   - component: {fileID: 1239308890}
   - component: {fileID: 1239308889}
   - component: {fileID: 1239308888}
-  - component: {fileID: 1239308887}
   m_Layer: 0
   m_Name: LaserPoint5
   m_TagString: Untagged
@@ -41683,20 +41866,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5714107509984500917}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1239308887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239308885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df48bf4276659af488285f6a3425340f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ManualLaser
-  targetLaser: {fileID: 1239308888}
-  visualFeedback: {fileID: 0}
 --- !u!114 &1239308888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41709,7 +41878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104961ea9bb2fb042a650ac1e04b7c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserEmitter
-  isLaserOn: 1
+  isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
   enableDynamicLights: 1
@@ -44775,8 +44944,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.037359733, y: 0.104259536, z: 0.8325153}
+  m_Center: {x: -0.0149389915, y: -0.0038875777, z: 0.2744484}
 --- !u!114 &1345200642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45517,6 +45686,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1372855332
 MonoBehaviour:
@@ -46082,6 +46253,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1386799928
 MonoBehaviour:
@@ -47056,7 +47229,6 @@ GameObject:
   - component: {fileID: 1403801434}
   - component: {fileID: 1403801433}
   - component: {fileID: 1403801432}
-  - component: {fileID: 1403801431}
   m_Layer: 0
   m_Name: LaserPoint1
   m_TagString: Untagged
@@ -47079,20 +47251,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 123608777665051622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1403801431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403801429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df48bf4276659af488285f6a3425340f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ManualLaser
-  targetLaser: {fileID: 1403801432}
-  visualFeedback: {fileID: 0}
 --- !u!114 &1403801432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47105,7 +47263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104961ea9bb2fb042a650ac1e04b7c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserEmitter
-  isLaserOn: 1
+  isLaserOn: 0
   maxDistance: 100
   maxBounces: 10
   enableDynamicLights: 1
@@ -47472,6 +47630,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1415298635
 MonoBehaviour:
@@ -47565,6 +47725,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1416968814
 MonoBehaviour:
@@ -49627,6 +49789,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1484883125
 MonoBehaviour:
@@ -52407,6 +52571,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &1572254558
 MonoBehaviour:
@@ -53287,6 +53453,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1594665028
 MonoBehaviour:
@@ -54150,6 +54318,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &1619209736
 MonoBehaviour:
@@ -54906,8 +55076,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.02584627, y: 0.124307714, z: 0.9287849}
+  m_Center: {x: -0.017095529, y: -0.0044302032, z: 0.32258284}
 --- !u!65 &1650859348
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56465,6 +56635,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1683915703
 MonoBehaviour:
@@ -56691,6 +56863,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1687814304
 MonoBehaviour:
@@ -57372,6 +57546,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1709178792
 MonoBehaviour:
@@ -58385,6 +58561,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1744777681
 MonoBehaviour:
@@ -58833,6 +59011,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &1757138775
 MonoBehaviour:
@@ -59454,6 +59634,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1771923053
 MonoBehaviour:
@@ -60130,6 +60312,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &1780481472
 MonoBehaviour:
@@ -60846,6 +61030,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797426553}
   m_Mesh: {fileID: 4977202743080756836, guid: cb7b9088fffe7e849bd3e09a55264195, type: 3}
+--- !u!1001 &1798029399
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 211.884
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -263.56186
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058969947795722353, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: targetLaser
+      value: 
+      objectReference: {fileID: 1163450351}
+    - target: {fileID: 5635563958667512178, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_Name
+      value: Button3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
 --- !u!1 &1800155720
 GameObject:
   m_ObjectHideFlags: 0
@@ -63176,6 +63421,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &1853561458
 MonoBehaviour:
@@ -67107,8 +67354,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.040924236, y: 0.10822465, z: 0.8520248}
+  m_Center: {x: -0.01664481, y: 0.005249921, z: 0.2842024}
 --- !u!114 &1958550737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69532,6 +69779,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 1
+  aiDetectRadius: 1.09
   isOpen: 0
 --- !u!114 &2030539253
 MonoBehaviour:
@@ -71446,8 +71695,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.07913153, z: 0.35846326}
-  m_Center: {x: 0.000000009156511, y: 0.00067345164, z: 0.037421595}
+  m_Size: {x: 0.039565038, y: 0.09618079, z: 0.83537585}
+  m_Center: {x: -0.016244244, y: -0.004252792, z: 0.2758788}
 --- !u!114 &2072307449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73113,6 +73362,8 @@ MonoBehaviour:
   speedMode: 0
   openSpeed: 3
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!114 &2124854988
 MonoBehaviour:
@@ -75023,6 +75274,67 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &673382901472855766
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 232.514
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.209
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -263.5207
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368493202127180782, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058969947795722353, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: targetLaser
+      value: 
+      objectReference: {fileID: 1403801432}
+    - target: {fileID: 5635563958667512178, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
+      propertyPath: m_Name
+      value: Button1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8a23f3a86009084291a3763d63b902c, type: 3}
 --- !u!1 &731586013006012839
 GameObject:
   m_ObjectHideFlags: 0
@@ -84192,6 +84504,8 @@ MonoBehaviour:
   speedMode: 1
   openSpeed: 0.5
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!33 &5671797935969369283
 MeshFilter:
@@ -84806,6 +85120,8 @@ MonoBehaviour:
   speedMode: 1
   openSpeed: 0.5
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!23 &5921054359272459782
 MeshRenderer:
@@ -86721,6 +87037,8 @@ MonoBehaviour:
   speedMode: 1
   openSpeed: 0.2
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!23 &7042999543629049656
 MeshRenderer:
@@ -86792,6 +87110,8 @@ MonoBehaviour:
   speedMode: 1
   openSpeed: 0.2
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!23 &7049619676572669531
 MeshRenderer:
@@ -87585,6 +87905,8 @@ MonoBehaviour:
   speedMode: 1
   openSpeed: 0.2
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!23 &7391385297265540960
 MeshRenderer:
@@ -91707,6 +92029,8 @@ MonoBehaviour:
   speedMode: 1
   openSpeed: 0.5
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!23 &8822456725238994304
 MeshRenderer:
@@ -92879,6 +93203,8 @@ MonoBehaviour:
   speedMode: 1
   openSpeed: 0.2
   closeSpeed: 5
+  allowAIAccess: 0
+  aiDetectRadius: 3.5
   isOpen: 0
 --- !u!23 &9207149358707509984
 MeshRenderer:
@@ -93011,3 +93337,8 @@ SceneRoots:
   - {fileID: 1064440333}
   - {fileID: 1559261376}
   - {fileID: 1014189457}
+  - {fileID: 673382901472855766}
+  - {fileID: 873876279}
+  - {fileID: 1798029399}
+  - {fileID: 417288987}
+  - {fileID: 473261429}

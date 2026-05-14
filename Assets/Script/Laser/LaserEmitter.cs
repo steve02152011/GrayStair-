@@ -16,15 +16,19 @@ public class LaserEmitter : MonoBehaviour
     [Header("自動動態光源 (新增)")]
     [Tooltip("是否要讓雷射自動產生真實的點光源照亮環境？")]
     public bool enableDynamicLights = true;
-    public Color lightColor = new Color(1f, 0.5f, 0f); // 預設橘色，請改成跟你的雷射一樣
+    public Color lightColor = new Color(1f, 0.5f, 0f);
     public float lightIntensity = 2.0f;
     public float lightRange = 2.0f;
 
     [Tooltip("注意：開啟陰影會很耗效能，建議維持 false")]
     public bool enableLightShadows = false;
 
-    // 用來存放自動產生的燈光 (物件池)
     private List<Light> dynamicLights = new List<Light>();
+
+    // ==========================================
+    // 【新增】：讓外部(例如按鈕)知道現在雷射有沒有打到真正的終點接收器
+    // ==========================================
+    public bool isHittingSensor { get; private set; } = false;
 
     void Start()
     {
@@ -33,15 +37,14 @@ public class LaserEmitter : MonoBehaviour
 
     void Update()
     {
-        // 只有在開關開啟時，才計算並畫出雷射
         if (isLaserOn)
         {
             CalculateLaser();
         }
         else
         {
-            // 如果開關被關閉了，把畫線的點數歸零，並關閉所有燈光
             lineRenderer.positionCount = 0;
+            isHittingSensor = false; // 雷射關閉時，狀態重置
             TurnOffAllLights();
         }
     }
@@ -53,25 +56,32 @@ public class LaserEmitter : MonoBehaviour
 
     private void CalculateLaser()
     {
-        // === 原本的雷射計算邏輯完全保留 ===
         List<Vector3> laserPoints = new List<Vector3>();
         Vector3 currentPos = transform.position;
         Vector3 currentDir = transform.forward;
 
-        laserPoints.Add(currentPos); // 第一個點：發射口
+        laserPoints.Add(currentPos);
         float remainingDistance = maxDistance;
+
+        isHittingSensor = false; // 每一幀一開始先假設沒打到
 
         for (int i = 0; i < maxBounces; i++)
         {
             if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, remainingDistance))
             {
-                laserPoints.Add(hit.point); // 擊中點或折射點
+                laserPoints.Add(hit.point);
                 remainingDistance -= hit.distance;
 
                 ILaserReceiver receiver = hit.collider.GetComponent<ILaserReceiver>();
 
                 if (receiver != null)
                 {
+                    // 【關鍵判斷】：檢查這是不是終點的 LaserSensor (排除掉鏡子和玻璃)
+                    if (hit.collider.GetComponent<LaserSensor>() != null)
+                    {
+                        isHittingSensor = true;
+                    }
+
                     bool continueLaser = receiver.ProcessLaser(
                         hit.point, hit.normal, currentDir, hit.collider,
                         ref remainingDistance, laserPoints,
@@ -82,7 +92,7 @@ public class LaserEmitter : MonoBehaviour
                 }
                 else
                 {
-                    break; // 打到一般牆壁，停止折射
+                    break;
                 }
             }
             else
@@ -97,13 +107,9 @@ public class LaserEmitter : MonoBehaviour
         lineRenderer.positionCount = laserPoints.Count;
         lineRenderer.SetPositions(laserPoints.ToArray());
 
-        // === 【新增】：更新動態光源 ===
         UpdateDynamicLights(laserPoints);
     }
 
-    // ==========================================
-    // 【魔法核心】：自動管理點光源
-    // ==========================================
     private void UpdateDynamicLights(List<Vector3> points)
     {
         if (!enableDynamicLights)
@@ -114,18 +120,16 @@ public class LaserEmitter : MonoBehaviour
 
         int requiredLights = points.Count;
 
-        // 如果目前的燈光數量不夠，就自動生出新的燈光來補足
         while (dynamicLights.Count < requiredLights)
         {
             GameObject lightObj = new GameObject("Auto_LaserLight_" + dynamicLights.Count);
-            lightObj.transform.SetParent(this.transform); // 把燈光設為雷射發射器的子物件，保持場景乾淨
+            lightObj.transform.SetParent(this.transform);
 
             Light newLight = lightObj.AddComponent<Light>();
             newLight.type = LightType.Point;
             dynamicLights.Add(newLight);
         }
 
-        // 把燈光放到雷射的每一個轉折點/擊中點上
         for (int i = 0; i < dynamicLights.Count; i++)
         {
             if (i < requiredLights)
@@ -139,7 +143,6 @@ public class LaserEmitter : MonoBehaviour
             }
             else
             {
-                // 多出來的燈光先關掉備用
                 dynamicLights[i].enabled = false;
             }
         }
