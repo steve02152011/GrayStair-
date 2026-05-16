@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
@@ -69,5 +70,12 @@ public class GameOverManager : MonoBehaviour
 
         // 4. 暫停遊戲時間 (怪物停止移動、玩家無法操作)
         Time.timeScale = 0f;
+    }
+
+    public void RetryGame()
+    {
+      
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
