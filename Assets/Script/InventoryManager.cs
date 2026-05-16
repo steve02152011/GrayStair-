@@ -209,4 +209,12 @@ public class InventoryManager : MonoBehaviour
             EquipWeapon();
         }
     }
+    // ==============================================================
+    // 【新增】：讓外部機關(如基座)確認玩家現在手上拿著什麼 ID 的物品
+    // ==============================================================
+    public int GetCurrentItemID()
+    {
+        // 回傳當前選中格子的物品 ID
+        return slots[currentIndex];
+    }
 }

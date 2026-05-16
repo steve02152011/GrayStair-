@@ -11,23 +11,23 @@ public class LaserEmitter : MonoBehaviour
     [Header("雷射參數")]
     public float maxDistance = 100f;
     public int maxBounces = 10;
+
+    // ==========================================
+    // 【新增】：讓環境雷射也能過濾圖層！
+    // ==========================================
+    [Tooltip("雷射可以打到哪些東西？(請把不需要擋雷射的圖層取消勾選)")]
+    public LayerMask laserHitMask = ~0; // 預設為 Everything
+
     private LineRenderer lineRenderer;
 
-    [Header("自動動態光源 (新增)")]
-    [Tooltip("是否要讓雷射自動產生真實的點光源照亮環境？")]
+    [Header("自動動態光源")]
     public bool enableDynamicLights = true;
     public Color lightColor = new Color(1f, 0.5f, 0f);
     public float lightIntensity = 2.0f;
     public float lightRange = 2.0f;
-
-    [Tooltip("注意：開啟陰影會很耗效能，建議維持 false")]
     public bool enableLightShadows = false;
 
     private List<Light> dynamicLights = new List<Light>();
-
-    // ==========================================
-    // 【新增】：讓外部(例如按鈕)知道現在雷射有沒有打到真正的終點接收器
-    // ==========================================
     public bool isHittingSensor { get; private set; } = false;
 
     void Start()
@@ -44,7 +44,7 @@ public class LaserEmitter : MonoBehaviour
         else
         {
             lineRenderer.positionCount = 0;
-            isHittingSensor = false; // 雷射關閉時，狀態重置
+            isHittingSensor = false;
             TurnOffAllLights();
         }
     }
@@ -62,12 +62,12 @@ public class LaserEmitter : MonoBehaviour
 
         laserPoints.Add(currentPos);
         float remainingDistance = maxDistance;
-
-        isHittingSensor = false; // 每一幀一開始先假設沒打到
+        isHittingSensor = false;
 
         for (int i = 0; i < maxBounces; i++)
         {
-            if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, remainingDistance))
+            // 【關鍵修改】：把 laserHitMask 加進射線判定裡！
+            if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, remainingDistance, laserHitMask))
             {
                 laserPoints.Add(hit.point);
                 remainingDistance -= hit.distance;
@@ -76,7 +76,6 @@ public class LaserEmitter : MonoBehaviour
 
                 if (receiver != null)
                 {
-                    // 【關鍵判斷】：檢查這是不是終點的 LaserSensor (排除掉鏡子和玻璃)
                     if (hit.collider.GetComponent<LaserSensor>() != null)
                     {
                         isHittingSensor = true;
@@ -106,7 +105,6 @@ public class LaserEmitter : MonoBehaviour
 
         lineRenderer.positionCount = laserPoints.Count;
         lineRenderer.SetPositions(laserPoints.ToArray());
-
         UpdateDynamicLights(laserPoints);
     }
 
