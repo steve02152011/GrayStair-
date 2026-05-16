@@ -27852,7 +27852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f48e71565a9924a933ee03bbef6a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorPedestal
-  hasMirror: 0
+  hasMirror: 1
   mirrorModel: {fileID: 900233212}
   ghostMirrorModel: {fileID: 114207490}
   previewDistance: 2
@@ -29584,7 +29584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f48e71565a9924a933ee03bbef6a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorPedestal
-  hasMirror: 0
+  hasMirror: 1
   mirrorModel: {fileID: 390072185}
   ghostMirrorModel: {fileID: 1128618072}
   previewDistance: 2
@@ -51081,7 +51081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f48e71565a9924a933ee03bbef6a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorPedestal
-  hasMirror: 0
+  hasMirror: 1
   mirrorModel: {fileID: 1418178937}
   ghostMirrorModel: {fileID: 423932953}
   previewDistance: 2
@@ -56966,7 +56966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f48e71565a9924a933ee03bbef6a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorPedestal
-  hasMirror: 0
+  hasMirror: 1
   mirrorModel: {fileID: 885316736}
   ghostMirrorModel: {fileID: 693991380}
   previewDistance: 2
@@ -77825,7 +77825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f48e71565a9924a933ee03bbef6a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorPedestal
-  hasMirror: 0
+  hasMirror: 1
   mirrorModel: {fileID: 1047539702}
   ghostMirrorModel: {fileID: 79813648}
   previewDistance: 2
@@ -80666,7 +80666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f48e71565a9924a933ee03bbef6a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorPedestal
-  hasMirror: 0
+  hasMirror: 1
   mirrorModel: {fileID: 166061157}
   ghostMirrorModel: {fileID: 1042914386}
   previewDistance: 2
@@ -81027,7 +81027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f48e71565a9924a933ee03bbef6a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorPedestal
-  hasMirror: 0
+  hasMirror: 1
   mirrorModel: {fileID: 778928346}
   ghostMirrorModel: {fileID: 370693764}
   previewDistance: 2
