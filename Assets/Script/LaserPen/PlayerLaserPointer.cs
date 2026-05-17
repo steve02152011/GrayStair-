@@ -36,6 +36,13 @@ public class PlayerLaserPointer : MonoBehaviour
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+
+        // 【修復核心 1】：搬到 Awake 執行！
+        // 確保在被背包系統強制關閉之前，就先把自己專屬的 UI 給藏起來
+        if (!hasPickedUp && uiContainer != null)
+        {
+            uiContainer.SetActive(false);
+        }
     }
 
     void Start()
@@ -43,16 +50,24 @@ public class PlayerLaserPointer : MonoBehaviour
         lineRenderer.enabled = false;
         lineRenderer.startWidth = 0.05f;
         lineRenderer.endWidth = 0.05f;
-
-        if (!hasPickedUp && uiContainer != null) uiContainer.SetActive(false);
+        // 原本在這裡的隱藏 UI 程式碼已經搬到 Awake 了
     }
 
     void OnEnable()
     {
-        if (hasPickedUp && uiContainer != null)
+        if (uiContainer != null)
         {
-            uiContainer.SetActive(true);
-            UpdateBatteryUI();
+            // 【修復核心 2】：強化防呆
+            // 每次裝備這個道具時，確實檢查到底撿起來了沒
+            if (hasPickedUp)
+            {
+                uiContainer.SetActive(true);
+                UpdateBatteryUI();
+            }
+            else
+            {
+                uiContainer.SetActive(false);
+            }
         }
     }
 
