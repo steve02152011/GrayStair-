@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI; // 【新增】：引入 AI 導航系統
 
 public class DoorController : MonoBehaviour
 {
@@ -30,9 +31,6 @@ public class DoorController : MonoBehaviour
     public float openSpeed = 5.0f;
     public float closeSpeed = 5.0f;
 
-    // ==========================================
-    // AI 自動感應設定
-    // ==========================================
     [Header("AI 感應設定")]
     [Tooltip("這扇門是否允許被怪物打開？(請只在「玩家能按F打開的手動門」打勾，雷射機關門請保持取消)")]
     public bool allowAIAccess = false;
@@ -46,9 +44,13 @@ public class DoorController : MonoBehaviour
     private Quaternion openRotation;
 
     public bool isOpen = false;
-
-    // 記錄這扇門現在是不是「因為 Dolo 經過」才打開的
     private bool isOpenedByAI = false;
+
+    // ==========================================
+    // 【新增】：用來記錄路障和前一次的開關狀態
+    // ==========================================
+    private NavMeshObstacle navObstacle;
+    private bool lastOpenState;
 
     void Start()
     {
@@ -57,23 +59,42 @@ public class DoorController : MonoBehaviour
 
         openPosition = closedPosition + openOffset;
         openRotation = closedRotation * Quaternion.Euler(openRotationOffset);
+
+        // 抓取門身上的路障組件，並初始化狀態
+        navObstacle = GetComponent<NavMeshObstacle>();
+        lastOpenState = isOpen;
+
+        if (navObstacle != null)
+        {
+            navObstacle.enabled = !isOpen; // 如果一開始是關著的，就開啟路障
+        }
     }
 
     void Update()
     {
-        // 決定速度
         float currentSpeed = openSpeed;
         if (speedMode == SpeedMode.SeparateSpeeds && !isOpen)
         {
             currentSpeed = closeSpeed;
         }
 
-        // ==========================================
-        // 每幀檢查 Dolo 是否靠近
-        // ==========================================
         if (allowAIAccess)
         {
             CheckAIProximity();
+        }
+
+        // ==========================================
+        // 【新增】：自動同步路障狀態
+        // ==========================================
+        if (isOpen != lastOpenState)
+        {
+            if (navObstacle != null)
+            {
+                // 門打開 -> 關閉路障 (讓 Dolo 走進來)
+                // 門關上 -> 開啟路障 (把路封死)
+                navObstacle.enabled = !isOpen;
+            }
+            lastOpenState = isOpen;
         }
 
         // 執行開關門位移與旋轉
@@ -89,19 +110,14 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    // ==========================================
-    // 核心邏輯：Dolo 靠近自動開門 / 離開自動關門
-    // ==========================================
     private void CheckAIProximity()
     {
-        // 在門的周圍畫一個無形的圓圈，偵測裡面有沒有碰撞體
         Collider[] hits = Physics.OverlapSphere(transform.position, aiDetectRadius);
         bool aiNearby = false;
         Vector3 closestAIPos = Vector3.zero;
 
         foreach (var hit in hits)
         {
-            // 【修改重點】：現在只會偵測 DoloAI，完全無視 Fonia
             if (hit.GetComponent<DoloAI>() != null)
             {
                 aiNearby = true;
@@ -112,21 +128,17 @@ public class DoorController : MonoBehaviour
 
         if (aiNearby)
         {
-            // Dolo 在附近，且門是關著的 -> 嘗試開門
             if (!isOpen)
             {
-                // 1. 判斷 Dolo 是在門的正面還是背面
                 Vector3 localAIPos = transform.InverseTransformPoint(closestAIPos);
                 bool isAIInFront = localAIPos.z > 0;
 
-                // 2. 嚴格遵守單向門規則！如果 Dolo 從死路走過來，門死都不開
                 if (isOneWayDoor)
                 {
-                    if (canOpenFromFrontOnly && !isAIInFront) return; // 擋住 Dolo
-                    if (!canOpenFromFrontOnly && isAIInFront) return; // 擋住 Dolo
+                    if (canOpenFromFrontOnly && !isAIInFront) return;
+                    if (!canOpenFromFrontOnly && isAIInFront) return;
                 }
 
-                // 3. 通過驗證，Dolo 成功開門
                 isOpenedByAI = true;
                 isOpen = true;
 
@@ -140,7 +152,6 @@ public class DoorController : MonoBehaviour
         }
         else
         {
-            // Dolo 不在附近，如果這扇門剛才是由 Dolo 打開的，就自動關上它
             if (isOpen && isOpenedByAI)
             {
                 isOpen = false;
@@ -149,7 +160,6 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    // 專門給玩家手動按 F 用的「智慧雙向開關」
     public void ToggleDoor(Vector3 interactorPosition)
     {
         Vector3 localPlayerPos = transform.InverseTransformPoint(interactorPosition);
@@ -171,7 +181,6 @@ public class DoorController : MonoBehaviour
 
         isOpen = !isOpen;
 
-        // 【細節】：如果玩家手動把門關上，我們要把 AI 標籤清掉，避免邏輯衝突
         if (!isOpen) isOpenedByAI = false;
 
         if (isOpen && doorType == DoorType.Rotating)
@@ -182,7 +191,6 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    // 給雷射接收器 (LaserSensor) 用的標準開關
     public void SetDoorState(bool state)
     {
         if (isOpen == state) return;
@@ -196,7 +204,6 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    // 【視覺輔助】：在 Unity 編輯器裡面畫出一顆紅色的球，讓你知道感應範圍有多大
     private void OnDrawGizmosSelected()
     {
         if (allowAIAccess)

@@ -4256,6 +4256,7 @@ GameObject:
   - component: {fileID: 85825130}
   - component: {fileID: 85825129}
   - component: {fileID: 85825128}
+  - component: {fileID: 85825131}
   m_Layer: 0
   m_Name: Door_Hinge11
   m_TagString: Untagged
@@ -4340,6 +4341,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &85825131
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85825126}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &86321799
 GameObject:
   m_ObjectHideFlags: 0
@@ -9343,6 +9360,7 @@ GameObject:
   - component: {fileID: 193276782}
   - component: {fileID: 193276781}
   - component: {fileID: 193276780}
+  - component: {fileID: 193276783}
   m_Layer: 0
   m_Name: Door_Hinge5
   m_TagString: Untagged
@@ -9427,6 +9445,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &193276783
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193276778}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &194404341
 GameObject:
   m_ObjectHideFlags: 0
@@ -16868,6 +16902,78 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354898076}
   m_Mesh: {fileID: -1119430988441025290, guid: cb7b9088fffe7e849bd3e09a55264195, type: 3}
+--- !u!1001 &356570968
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1843855692}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9143273
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.0188813
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5467062
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.009912483
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2715592
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09272262
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      propertyPath: m_Name
+      value: Dolo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1114927915}
+  m_SourcePrefab: {fileID: 100100000, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
 --- !u!65 &356889144
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29263,6 +29369,7 @@ GameObject:
   - component: {fileID: 636622316}
   - component: {fileID: 636622317}
   - component: {fileID: 636622318}
+  - component: {fileID: 636622319}
   m_Layer: 0
   m_Name: Door_Hinge1
   m_TagString: Untagged
@@ -29345,6 +29452,22 @@ MonoBehaviour:
   allowAIAccess: 1
   aiDetectRadius: 1.09
   isOpen: 0
+--- !u!208 &636622319
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636622314}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.475, z: 0.49}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.36, y: 0, z: 0.04}
+  m_TimeToStationary: 0.5
 --- !u!1 &638106726
 GameObject:
   m_ObjectHideFlags: 0
@@ -35143,6 +35266,7 @@ GameObject:
   - component: {fileID: 757039594}
   - component: {fileID: 757039593}
   - component: {fileID: 757039592}
+  - component: {fileID: 757039595}
   m_Layer: 0
   m_Name: Door_Hinge10
   m_TagString: Untagged
@@ -35227,6 +35351,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &757039595
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757039590}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &757589533
 GameObject:
   m_ObjectHideFlags: 0
@@ -38122,6 +38262,7 @@ GameObject:
   - component: {fileID: 798567252}
   - component: {fileID: 798567251}
   - component: {fileID: 798567250}
+  - component: {fileID: 798567253}
   m_Layer: 0
   m_Name: Door_Hinge8
   m_TagString: Untagged
@@ -38206,6 +38347,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &798567253
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798567248}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &799754802
 GameObject:
   m_ObjectHideFlags: 0
@@ -41571,6 +41728,7 @@ GameObject:
   - component: {fileID: 899155850}
   - component: {fileID: 899155849}
   - component: {fileID: 899155848}
+  - component: {fileID: 899155851}
   m_Layer: 0
   m_Name: Door_Hinge9
   m_TagString: Untagged
@@ -41655,6 +41813,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &899155851
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899155846}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &899274156
 GameObject:
   m_ObjectHideFlags: 0
@@ -41931,6 +42105,7 @@ GameObject:
   - component: {fileID: 905657368}
   - component: {fileID: 905657367}
   - component: {fileID: 905657366}
+  - component: {fileID: 905657369}
   m_Layer: 0
   m_Name: Door_Hinge12
   m_TagString: Untagged
@@ -42015,6 +42190,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &905657369
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905657364}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.475, z: 0.49}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.36, y: 0, z: 0.04}
+  m_TimeToStationary: 0.5
 --- !u!1 &908837577
 GameObject:
   m_ObjectHideFlags: 0
@@ -43631,6 +43822,7 @@ GameObject:
   - component: {fileID: 947405314}
   - component: {fileID: 947405313}
   - component: {fileID: 947405312}
+  - component: {fileID: 947405315}
   m_Layer: 0
   m_Name: Door_Hinge6
   m_TagString: Untagged
@@ -43715,6 +43907,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &947405315
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947405310}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &951887240
 GameObject:
   m_ObjectHideFlags: 0
@@ -50568,6 +50776,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114102520}
   m_Mesh: {fileID: -8678823145569952518, guid: d6e7e6d2196375e41a277094914c044b, type: 3}
+--- !u!1 &1114927913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+  m_PrefabInstance: {fileID: 356570968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1114927914 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1dbc26c42ca5edf49b7e51daa073bc15, type: 3}
+  m_PrefabInstance: {fileID: 356570968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1114927915
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114927913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.164032, y: 0.54357636, z: 2.0415344}
+  m_Center: {x: -0.009017944, y: 0.22821182, z: 0.17848206}
 --- !u!1 &1119978804
 GameObject:
   m_ObjectHideFlags: 0
@@ -71542,6 +71781,7 @@ GameObject:
   - component: {fileID: 1572254559}
   - component: {fileID: 1572254558}
   - component: {fileID: 1572254557}
+  - component: {fileID: 1572254560}
   m_Layer: 0
   m_Name: Door_Hinge4
   m_TagString: Untagged
@@ -71626,6 +71866,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &1572254560
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572254555}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1572860004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74046,6 +74302,7 @@ GameObject:
   - component: {fileID: 1619209737}
   - component: {fileID: 1619209736}
   - component: {fileID: 1619209735}
+  - component: {fileID: 1619209738}
   m_Layer: 0
   m_Name: Door_Hinge2
   m_TagString: Untagged
@@ -74130,6 +74387,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.80190736, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.50170773, y: 0.015371856, z: -0.22753353}
+--- !u!208 &1619209738
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619209733}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1623934982
 GameObject:
   m_ObjectHideFlags: 0
@@ -80151,6 +80424,7 @@ GameObject:
   - component: {fileID: 1757138776}
   - component: {fileID: 1757138775}
   - component: {fileID: 1757138774}
+  - component: {fileID: 1757138777}
   m_Layer: 0
   m_Name: Door_Hinge13
   m_TagString: Untagged
@@ -80235,6 +80509,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &1757138777
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757138772}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.475, z: 0.49}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.36, y: 0, z: 0.04}
+  m_TimeToStationary: 0.5
 --- !u!65 &1760036849
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81563,6 +81853,7 @@ GameObject:
   - component: {fileID: 1780481473}
   - component: {fileID: 1780481472}
   - component: {fileID: 1780481471}
+  - component: {fileID: 1780481474}
   m_Layer: 0
   m_Name: Door_Hinge7
   m_TagString: Untagged
@@ -81647,6 +81938,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9191004, y: 0.87142223, z: 2.8767214}
   m_Center: {x: 0.44311324, y: 0.015371868, z: -0.33945158}
+--- !u!208 &1780481474
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780481469}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.475, z: 0.49}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.36, y: 0, z: 0.04}
+  m_TimeToStationary: 0.5
 --- !u!1 &1783103288
 GameObject:
   m_ObjectHideFlags: 0
@@ -85131,10 +85438,11 @@ Transform:
   m_GameObject: {fileID: 1843855691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.404, y: 10.728, z: -7.563}
-  m_LocalScale: {x: 0.74020594, y: 0.74020594, z: 0.74020594}
+  m_LocalPosition: {x: -11.366, y: 10.469, z: -8.954}
+  m_LocalScale: {x: 1.1091986, y: 0.33594248, z: 1.855056}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1114927914}
   m_Father: {fileID: 543450652929707904}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1843855693
@@ -85232,7 +85540,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843855691}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -93923,6 +94231,7 @@ GameObject:
   - component: {fileID: 2030539254}
   - component: {fileID: 2030539253}
   - component: {fileID: 2030539252}
+  - component: {fileID: 2030539255}
   m_Layer: 0
   m_Name: Door_Hinge3
   m_TagString: Untagged
@@ -94007,6 +94316,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8160812, y: 0.87142223, z: 0.544925}
   m_Center: {x: 0.3839793, y: 0.015371868, z: -0.22753355}
+--- !u!208 &2030539255
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030539250}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.48, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2031938125
 GameObject:
   m_ObjectHideFlags: 0
@@ -102250,6 +102575,7 @@ GameObject:
   - component: {fileID: 7369394810470564682}
   - component: {fileID: 777487377}
   - component: {fileID: 7369394810470564683}
+  - component: {fileID: 7369394810470564684}
   m_Layer: 0
   m_Name: LaserDoor4B
   m_TagString: Untagged
@@ -104289,6 +104615,7 @@ GameObject:
   - component: {fileID: 3984391851361824077}
   - component: {fileID: 1350697591}
   - component: {fileID: 5669611625460653670}
+  - component: {fileID: 5669611625460653671}
   m_Layer: 0
   m_Name: LaserDoor1
   m_TagString: Untagged
@@ -104758,6 +105085,7 @@ GameObject:
   - component: {fileID: 8804980035744852389}
   - component: {fileID: 1637462487}
   - component: {fileID: 8804980035744852390}
+  - component: {fileID: 8804980035744852391}
   m_Layer: 0
   m_Name: LaserDoor2
   m_TagString: Untagged
@@ -108231,6 +108559,7 @@ GameObject:
   - component: {fileID: 7042999543629049656}
   - component: {fileID: 1812971259}
   - component: {fileID: 7042999543629049657}
+  - component: {fileID: 7042999543629049658}
   m_Layer: 0
   m_Name: LaserDoor3B
   m_TagString: Untagged
@@ -109319,6 +109648,7 @@ GameObject:
   - component: {fileID: 2821004413814137589}
   - component: {fileID: 1026972425}
   - component: {fileID: 7028437942778786259}
+  - component: {fileID: 7028437942778786260}
   m_Layer: 0
   m_Name: LaserDoor3
   m_TagString: Untagged
@@ -109596,6 +109926,22 @@ MonoBehaviour:
   allowAIAccess: 0
   aiDetectRadius: 3.5
   isOpen: 0
+--- !u!208 &5669611625460653671
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2997555717517428502}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.77400005, y: 0.085, z: 0.9710001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.245, y: -0.01, z: 0.77300006}
+  m_TimeToStationary: 0.5
 --- !u!33 &5671797935969369283
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -110181,6 +110527,7 @@ GameObject:
   - component: {fileID: 662236005928010053}
   - component: {fileID: 1600357613}
   - component: {fileID: 5887800313904381343}
+  - component: {fileID: 5887800313904381344}
   m_Layer: 0
   m_Name: LaserDoor1B
   m_TagString: Untagged
@@ -110212,6 +110559,22 @@ MonoBehaviour:
   allowAIAccess: 0
   aiDetectRadius: 3.5
   isOpen: 0
+--- !u!208 &5887800313904381344
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5887800313904381342}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.77400005, y: 0.085, z: 0.9710001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.245, y: -0.01, z: 0.77300006}
+  m_TimeToStationary: 0.5
 --- !u!23 &5921054359272459782
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112080,6 +112443,22 @@ MonoBehaviour:
   allowAIAccess: 0
   aiDetectRadius: 3.5
   isOpen: 0
+--- !u!208 &7028437942778786260
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5545391426518354159}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.77400005, y: 0.085, z: 0.9710001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.37, y: -0.01, z: 0.77300006}
+  m_TimeToStationary: 0.5
 --- !u!23 &7042999543629049656
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112153,6 +112532,22 @@ MonoBehaviour:
   allowAIAccess: 0
   aiDetectRadius: 3.5
   isOpen: 0
+--- !u!208 &7042999543629049658
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4986518525948889009}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.77400005, y: 0.085, z: 0.9710001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.37, y: -0.01, z: 0.77300006}
+  m_TimeToStationary: 0.5
 --- !u!23 &7049619676572669531
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112933,6 +113328,22 @@ MonoBehaviour:
   allowAIAccess: 0
   aiDetectRadius: 3.5
   isOpen: 0
+--- !u!208 &7369394810470564684
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783036169912284904}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.77400005, y: 0.085, z: 0.9710001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.45200002, y: -0.01, z: 0.77300006}
+  m_TimeToStationary: 0.5
 --- !u!23 &7391385297265540960
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117035,6 +117446,22 @@ MonoBehaviour:
   allowAIAccess: 0
   aiDetectRadius: 3.5
   isOpen: 0
+--- !u!208 &8804980035744852391
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366695679490540221}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.51000005, y: 0.085, z: 0.9710001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.29700002, y: -0.012, z: 0.77300006}
+  m_TimeToStationary: 0.5
 --- !u!23 &8822456725238994304
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118107,6 +118534,7 @@ GameObject:
   - component: {fileID: 7023179681420421570}
   - component: {fileID: 220960887}
   - component: {fileID: 9183006185818036409}
+  - component: {fileID: 9183006185818036410}
   m_Layer: 0
   m_Name: LaserDoor4
   m_TagString: Untagged
@@ -118138,6 +118566,22 @@ MonoBehaviour:
   allowAIAccess: 0
   aiDetectRadius: 3.5
   isOpen: 0
+--- !u!208 &9183006185818036410
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9183006185818036408}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.77400005, y: 0.085, z: 0.9710001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.45200002, y: -0.01, z: 0.77300006}
+  m_TimeToStationary: 0.5
 --- !u!23 &9207149358707509984
 MeshRenderer:
   m_ObjectHideFlags: 0
