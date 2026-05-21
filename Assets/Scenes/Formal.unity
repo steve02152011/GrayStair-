@@ -306,9 +306,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d538952d1e50da4d935376058300332, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1689954728}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d538952d1e50da4d935376058300332, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1689954727}
     - targetCorrespondingSourceObject: {fileID: 7583343868983580184, guid: 7d538952d1e50da4d935376058300332, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1854695}
@@ -8141,33 +8138,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.23109926, y: 0.9261713, z: 0.01932634}
   m_Center: {x: 0, y: 0, z: 0.009663628}
---- !u!54 &140277366
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810773560}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &140277367
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20300,6 +20270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office desk1
       objectReference: {fileID: 0}
+    - target: {fileID: 7779983687377666255, guid: 7d538952d1e50da4d935376058300332, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20307,9 +20281,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d538952d1e50da4d935376058300332, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1273748061}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d538952d1e50da4d935376058300332, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1273748060}
     - targetCorrespondingSourceObject: {fileID: 7583343868983580184, guid: 7d538952d1e50da4d935376058300332, type: 3}
       insertIndex: -1
       addedObject: {fileID: 411922649}
@@ -63615,33 +63586,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.07411756, y: 1.1768754, z: 0.079436585}
   m_Center: {x: -0.000000022059856, y: -9.571642e-16, z: 0.6476172}
---- !u!54 &1273748060
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411922636}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1273748061
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -84189,33 +84133,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.58591074, y: 0.36251375, z: 0.6385146}
   m_Center: {x: 0, y: 0, z: 0.0000006556511}
---- !u!54 &1689954727
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854682}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1689954728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -84237,33 +84154,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.774588, y: 11.405695, z: 13.926041}
   m_Center: {x: 0.06743211, y: 1.6426582, z: -0.08588433}
---- !u!54 &1691813991
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920185632}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1691813992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -89354,9 +89244,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d538952d1e50da4d935376058300332, type: 3}
       insertIndex: -1
       addedObject: {fileID: 140277367}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d538952d1e50da4d935376058300332, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 140277366}
     - targetCorrespondingSourceObject: {fileID: 7583343868983580184, guid: 7d538952d1e50da4d935376058300332, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1810773573}
@@ -95255,9 +95142,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d538952d1e50da4d935376058300332, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1691813992}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d538952d1e50da4d935376058300332, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1691813991}
     - targetCorrespondingSourceObject: {fileID: 7583343868983580184, guid: 7d538952d1e50da4d935376058300332, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1920185645}
