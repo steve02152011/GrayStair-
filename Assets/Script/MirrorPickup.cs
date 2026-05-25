@@ -7,8 +7,24 @@ public class MirrorPickup : MonoBehaviour
     [Tooltip("攜帶式鏡子在背包裡的 ID 是多少？(請跟基座設定的 ID 一致，例如 2)")]
     public int mirrorWeaponID = 2;
 
+    // ==========================================
+    // 【新增】：UI 綁定欄位
+    // ==========================================
+    [Header("UI 綁定")]
+    [Tooltip("玩家靠近時顯示的『按 F 撿起』提示群組或文字")]
+    public GameObject interactPrompt;
+
     private bool isPlayerNear = false;
     private InventoryManager playerInventory;
+
+    void Awake()
+    {
+        // 遊戲一開始先確保提示字是關閉的，避免幽靈 UI
+        if (interactPrompt != null)
+        {
+            interactPrompt.SetActive(false);
+        }
+    }
 
     void Start()
     {
@@ -26,6 +42,12 @@ public class MirrorPickup : MonoBehaviour
             // 記住玩家身上的背包系統
             playerInventory = other.transform.root.GetComponentInChildren<InventoryManager>();
 
+            // 【新增】：打開提示字
+            if (interactPrompt != null)
+            {
+                interactPrompt.SetActive(true);
+            }
+
             Debug.Log("<color=yellow>[撿拾系統]</color> 發現地上的鏡子！可以按 [F] 撿起了！");
 
             if (playerInventory == null)
@@ -41,6 +63,13 @@ public class MirrorPickup : MonoBehaviour
         {
             isPlayerNear = false;
             playerInventory = null; // 玩家離開時清空記憶
+
+            // 【新增】：關閉提示字
+            if (interactPrompt != null)
+            {
+                interactPrompt.SetActive(false);
+            }
+
             Debug.Log("<color=grey>[撿拾系統]</color> 玩家離開了鏡子範圍。");
         }
     }
@@ -57,8 +86,13 @@ public class MirrorPickup : MonoBehaviour
                 {
                     Debug.Log("<color=green>[撿拾系統]</color> 成功撿起攜帶式鏡子並收進背包！");
 
-                    // 【關鍵】：塞成功了，直接把這個地上的道具徹底刪除！
-                    // 這樣它就永遠消失了，玩家只能透過基座把鏡子拿出來
+                    // 【關鍵防呆】：東西被撿走並銷毀前，一定要先把提示字關掉！
+                    if (interactPrompt != null)
+                    {
+                        interactPrompt.SetActive(false);
+                    }
+
+                    // 塞成功了，直接把這個地上的道具徹底刪除！
                     Destroy(gameObject);
                 }
                 else
