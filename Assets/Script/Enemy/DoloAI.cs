@@ -11,16 +11,24 @@ public class DoloAI : MonoBehaviour
 
     [Header("目標設定")]
     public Transform player;
+    private CharacterController playerController; // 用來讀取玩家的速度(聲音大小)
 
-    [Header("感知能力")]
-    public float detectionRadius = 15f;
-    [Range(0, 360)]
-    public float detectionAngle = 120f;
+    [Header("尋聲定位設定 (盲眼聽覺)")]
+    [Tooltip("Dolo 的基礎聽力極限距離")]
+    public float maxHearingRadius = 25f;
+    [Tooltip("玩家要走多快才會發出聲音？(低於此速度視為完全靜音)")]
+    public float silentSpeedThreshold = 0.5f;
+    [Tooltip("玩家的奔跑速度基準 (用來換算最大噪音，請填入你FPS腳本的RunSpeed)")]
+    public float playerMaxSpeedReference = 10f;
+    [Tooltip("Dolo 到達聲音來源後，會在該處停留尋找幾秒？")]
+    public float investigateTime = 3f;
+
+    private Vector3 lastHeardPosition; // 記錄最後聽到聲音的位置
 
     [Header("避光雷達設定 (僅漫遊有效)")]
-    public LayerMask laserLayer;        // 請確保雷射陷阱的 Layer 設為這個
-    public float avoidLaserDistance = 7f; // 雷達探測距離 (稍微調長一點讓牠有時間反應)
-    public float whiskersAngle = 30f;   // 左右探測射線的角度
+    public LayerMask laserLayer;
+    public float avoidLaserDistance = 7f;
+    public float whiskersAngle = 30f;
 
     [Header("遊走設定")]
     public float wanderRadius = 10f;
@@ -39,7 +47,7 @@ public class DoloAI : MonoBehaviour
     public float fleeDuration = 4f;
 
     [Header("攻擊力設定")]
-    public float damageAmount = 20f; // 碰到一次扣多少理智
+    public float damageAmount = 20f;
 
     private NavMeshAgent agent;
     private float stateTimer;
@@ -48,10 +56,17 @@ public class DoloAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         stateTimer = wanderTimer;
+
         if (player == null)
         {
             GameObject p = GameObject.FindGameObjectWithTag("Player");
             if (p != null) player = p.transform;
+        }
+
+        // 綁定玩家的控制器，以便監聽腳步聲
+        if (player != null)
+        {
+            playerController = player.GetComponent<CharacterController>();
         }
     }
 
@@ -74,30 +89,22 @@ public class DoloAI : MonoBehaviour
         stateTimer = 0f;
     }
 
-    // ================== 漫遊狀態 (具備避光能力) ==================
+    // ================== 漫遊狀態 (瞎眼，只靠聽覺) ==================
 
     private void UpdateWanderState()
     {
         agent.speed = walkSpeed;
 
-        // 1. 避光雷達最優先：漫遊時持續檢查前方是否有雷射
+        // 1. 避光雷達最優先
         if (CheckWhiskersForLaser())
         {
-            Debug.Log("<color=yellow>[Dolo 避險]</color> 嘖！前面有光，我不過去！(重新尋路)");
-            PickNewWanderDestination(); // 發現雷射，立刻換個方向走
+            PickNewWanderDestination();
         }
         else
         {
-            // 2. 判斷是否已經抵達目的地
-            // pathPending 代表是否還在計算路徑中，remainingDistance 則是離目標還有多遠
-            // 我們加一個 0.1f 的緩衝值，避免浮點數誤差導致永遠判定不到達
             if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.1f)
             {
-                // 【已經抵達目的地】
-                // 開始在原地讀秒
                 stateTimer += Time.deltaTime;
-
-                // 原地數滿你設定的秒數 (wanderTimer) 後，才決定下一個地點
                 if (stateTimer >= wanderTimer)
                 {
                     PickNewWanderDestination();
@@ -105,14 +112,15 @@ public class DoloAI : MonoBehaviour
             }
             else
             {
-                // 【還在走路的過程中】
-                // 把計時器歸零 (或保持為 0)，確保他「到了之後」才會從 0 開始數秒
                 stateTimer = 0f;
             }
         }
 
-        // 3. 隨時保持警戒
-        if (DetectPlayer()) ChangeState(AIState.Chase);
+        // 2. 【核心修改】：漫遊時完全不再檢查玩家是否在眼前，只聽聲音！
+        if (CheckForSounds())
+        {
+            ChangeState(AIState.Chase);
+        }
     }
 
     private void PickNewWanderDestination()
@@ -122,45 +130,99 @@ public class DoloAI : MonoBehaviour
         stateTimer = 0;
     }
 
-    // 三向雷達探測 (左、中、右)
     private bool CheckWhiskersForLaser()
     {
         Vector3 rayStart = transform.position + (Vector3.up * 0.5f);
-
-        // 中間射線
         if (Physics.Raycast(rayStart, transform.forward, avoidLaserDistance, laserLayer)) return true;
 
-        // 左側斜射線
         Vector3 leftDir = Quaternion.Euler(0, -whiskersAngle, 0) * transform.forward;
         if (Physics.Raycast(rayStart, leftDir, avoidLaserDistance, laserLayer)) return true;
 
-        // 右側斜射線
         Vector3 rightDir = Quaternion.Euler(0, whiskersAngle, 0) * transform.forward;
         if (Physics.Raycast(rayStart, rightDir, avoidLaserDistance, laserLayer)) return true;
 
         return false;
     }
 
-    // ================== 追擊狀態 (失去理智，無視雷達) ==================
+    // ================== 追擊狀態 (循聲調查) ==================
 
     private void UpdateChaseState()
     {
         agent.speed = runSpeed;
-        // 追逐狀態下，Dolo 滿腦子只有玩家，所以完全不呼叫 CheckWhiskersForLaser()
-        if (player != null) agent.SetDestination(player.position);
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer <= attackRange) ChangeState(AIState.Attack);
-        else if (!DetectPlayer()) ChangeState(AIState.Wander);
+        // 1. 如果玩家持續移動發出聲音，不斷更新「最後聽到的位置」
+        if (CheckForSounds())
+        {
+            stateTimer = 0f; // 重置疑惑時間
+        }
+
+        // 2. 往最後聽到聲音的地方衝過去 (不再像追蹤飛彈一樣鎖定玩家)
+        agent.SetDestination(lastHeardPosition);
+
+        // 3. 如果到達了聲音發出的地點
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.5f)
+        {
+            // 停在原地尋找，開始計算疑惑時間
+            stateTimer += Time.deltaTime;
+
+            // 只要他在找人的狀態，且玩家剛好就在他身邊 (距離過近)
+            // 代表他直接撞到了獵物，發動攻擊！
+            if (Vector3.Distance(transform.position, player.position) <= attackRange)
+            {
+                ChangeState(AIState.Attack);
+            }
+            // 如果找了一陣子還是安靜無聲，就放棄追擊，回去漫遊
+            else if (stateTimer >= investigateTime)
+            {
+                Debug.Log("<color=grey>[Dolo 聽覺]</color> 奇怪...剛剛明明有聲音的...算了。");
+                ChangeState(AIState.Wander);
+            }
+        }
+        else
+        {
+            // 還沒跑到地點前，如果路上剛好直接撞到玩家，照樣開咬！
+            if (Vector3.Distance(transform.position, player.position) <= attackRange)
+            {
+                ChangeState(AIState.Attack);
+            }
+        }
     }
 
-    // ================== 其他邏輯 (保持不變) ==================
+    // ================== 聽覺核心系統 ==================
+
+    private bool CheckForSounds()
+    {
+        if (player == null || playerController == null) return false;
+
+        // 獲取玩家目前的移動速度 (X 和 Z 軸的平面移動)
+        Vector3 horizontalVelocity = new Vector3(playerController.velocity.x, 0, playerController.velocity.z);
+        float playerSpeed = horizontalVelocity.magnitude;
+
+        // 【滿足你的需求】：如果玩家站著不動，或是緩慢移動 (低於閾值)，視為「完全靜音」
+        if (playerSpeed <= silentSpeedThreshold) return false;
+
+        // 根據玩家的速度來決定發出的「噪音半徑」 (跑越快，聲音傳越遠)
+        // 使用 Lerp 依比例放大，跑到最高速時，噪音傳遞距離就等於 maxHearingRadius
+        float currentNoiseRadius = Mathf.Lerp(0, maxHearingRadius, playerSpeed / playerMaxSpeedReference);
+
+        // 檢查 Dolo 和玩家的距離是否在噪音傳遞半徑內
+        if (Vector3.Distance(transform.position, player.position) <= currentNoiseRadius)
+        {
+            // 聽到了！記錄聲音發出的精準位置
+            lastHeardPosition = player.position;
+            return true;
+        }
+
+        return false;
+    }
+
+    // ================== 攻擊與逃跑 (保持不變) ==================
 
     public void ReactToLaser(Vector3 laserSourcePos)
     {
         if (currentState == AIState.Flee) return;
         ChangeState(AIState.Flee);
-        Debug.Log("<color=blue>[Dolo 恐懼]</color> 嗚啊！！被射中了！");
+        Debug.Log("<color=blue>[Dolo 恐懼]</color> 嗚啊！！被光照到了！");
 
         Vector3 fleeDirection = (transform.position - laserSourcePos).normalized;
         Vector3 targetFleePoint = transform.position + fleeDirection * fleeDistance;
@@ -192,41 +254,21 @@ public class DoloAI : MonoBehaviour
 
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-            Debug.Log("<color=magenta>[Dolo 戰鬥]</color> 飛撲！！");
-
-            // 【修正：在這裡真正造成傷害！】
-            // Dolo 撲上去的瞬間，直接抓取玩家並扣除理智
+            Debug.Log("<color=magenta>[Dolo 戰鬥]</color> 飛撲撕咬！！");
             PlayerSanity playerSanity = player.GetComponent<PlayerSanity>();
             if (playerSanity != null)
             {
                 playerSanity.TakeDamage(damageAmount);
             }
-
             lastAttackTime = Time.time;
         }
 
+        // 如果玩家屏息逃出了攻擊範圍，Dolo 會立刻切換回循聲狀態尋找玩家
         if (Vector3.Distance(transform.position, player.position) > attackRange)
         {
             agent.isStopped = false;
             ChangeState(AIState.Chase);
         }
-    }
-
-    private bool DetectPlayer()
-    {
-        if (player == null) return false;
-        Vector3 dir = player.position - transform.position;
-        if (dir.magnitude <= detectionRadius)
-        {
-            if (Vector3.Angle(transform.forward, dir) <= detectionAngle / 2f)
-            {
-                if (Physics.Raycast(transform.position + Vector3.up * 0.5f, dir.normalized, out RaycastHit hit, detectionRadius))
-                {
-                    if (hit.transform == player || hit.transform.CompareTag("Player")) return true;
-                }
-            }
-        }
-        return false;
     }
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
