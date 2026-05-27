@@ -18,12 +18,24 @@ public class ReadableDocument : MonoBehaviour
     [Tooltip("用來顯示文件大圖的 Image 組件")]
     public Image documentDisplayImage;
 
+    // ==========================================
+    // 【新增】：紙張互動音效設定
+    // ==========================================
+    [Header("音效設定")]
+    [Tooltip("用來播放紙張聲音的發聲器 (請掛載 AudioSource 並拖曳進來)")]
+    public AudioSource documentAudioSource;
+
+    [Tooltip("打開文件時的音效 (例如：拿紙、揉紙聲)")]
+    public AudioClip openSound;
+
+    [Tooltip("關閉文件時的音效 (選填，例如：放下紙張的聲音)")]
+    public AudioClip closeSound;
+    // ==========================================
+
     private bool isPlayerNear = false;
     private bool isReading = false;
 
-    // ==========================================
-    // 【新增】：用來記錄玩家的 FPSController，以便鎖死視角
-    // ==========================================
+    // 用來記錄玩家的 FPSController，以便鎖死視角
     private FPSController playerController;
 
     void Awake()
@@ -93,8 +105,14 @@ public class ReadableDocument : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        // 【新增】：文件打開時，強制沒收玩家的移動與轉視角權限！
+        // 文件打開時，強制沒收玩家的移動與轉視角權限！
         if (playerController != null) playerController.canMove = false;
+
+        // 【新增】：播放打開文件的音效
+        if (documentAudioSource != null && openSound != null)
+        {
+            documentAudioSource.PlayOneShot(openSound);
+        }
     }
 
     private void CloseDocument()
@@ -107,7 +125,13 @@ public class ReadableDocument : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        // 【新增】：文件關閉時，把移動與轉視角權限還給玩家！
+        // 文件關閉時，把移動與轉視角權限還給玩家！
         if (playerController != null) playerController.canMove = true;
+
+        // 【新增】：播放關閉文件的音效
+        if (documentAudioSource != null && closeSound != null)
+        {
+            documentAudioSource.PlayOneShot(closeSound);
+        }
     }
 }

@@ -12,11 +12,8 @@ public class LaserEmitter : MonoBehaviour
     public float maxDistance = 100f;
     public int maxBounces = 10;
 
-    // ==========================================
-    // 【新增】：讓環境雷射也能過濾圖層！
-    // ==========================================
     [Tooltip("雷射可以打到哪些東西？(請把不需要擋雷射的圖層取消勾選)")]
-    public LayerMask laserHitMask = ~0; // 預設為 Everything
+    public LayerMask laserHitMask = ~0;
 
     private LineRenderer lineRenderer;
 
@@ -27,12 +24,30 @@ public class LaserEmitter : MonoBehaviour
     public float lightRange = 2.0f;
     public bool enableLightShadows = false;
 
+    // ==========================================
+    // 【新增】：雷射環境音效設定
+    // ==========================================
+    [Header("音效設定")]
+    [Tooltip("用來播放雷射嗡嗡聲的發聲器 (請掛載 AudioSource 並拖曳進來)")]
+    public AudioSource laserAudioSource;
+
+    [Tooltip("雷射持續發射時的低頻嗡嗡聲")]
+    public AudioClip laserHumSound;
+    // ==========================================
+
     private List<Light> dynamicLights = new List<Light>();
     public bool isHittingSensor { get; private set; } = false;
 
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+
+        // 【新增】：遊戲一開始，就把聲音設定為「無限循環」模式
+        if (laserAudioSource != null && laserHumSound != null)
+        {
+            laserAudioSource.clip = laserHumSound;
+            laserAudioSource.loop = true;
+        }
     }
 
     void Update()
@@ -40,12 +55,24 @@ public class LaserEmitter : MonoBehaviour
         if (isLaserOn)
         {
             CalculateLaser();
+
+            // 【新增】：如果雷射是開啟的，且聲音還沒開始播，就讓它開始響
+            if (laserAudioSource != null && !laserAudioSource.isPlaying && laserHumSound != null)
+            {
+                laserAudioSource.Play();
+            }
         }
         else
         {
             lineRenderer.positionCount = 0;
             isHittingSensor = false;
             TurnOffAllLights();
+
+            // 【新增】：如果雷射被關掉了，立刻把聲音截斷
+            if (laserAudioSource != null && laserAudioSource.isPlaying)
+            {
+                laserAudioSource.Stop();
+            }
         }
     }
 
@@ -66,7 +93,6 @@ public class LaserEmitter : MonoBehaviour
 
         for (int i = 0; i < maxBounces; i++)
         {
-            // 【關鍵修改】：把 laserHitMask 加進射線判定裡！
             if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, remainingDistance, laserHitMask))
             {
                 laserPoints.Add(hit.point);

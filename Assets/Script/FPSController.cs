@@ -10,16 +10,30 @@ public class FPSController : MonoBehaviour
     public float gravity = -9.81f;
 
     [Header("Look Settings")]
-    // 【修改核心 1】：把 Camera 型別改成 Transform
-    // 這樣我們才能把「沒有攝影機組件」的空物件 (CameraHolder) 拖進來！
     [Tooltip("請把 Player 底下的 CameraHolder 空物件拖進來")]
     public Transform cameraHolder;
-
     public float mouseSensitivity = 2.0f;
     public float lookXLimit = 85.0f;
 
     [Header("Interaction")]
     public PhysicsGrabber grabber;
+
+    // ==========================================
+    // 【修改】：針對「長音效」的腳步聲系統設定
+    // ==========================================
+    [Header("Audio Settings (腳步聲 - 長音效版)")]
+    [Tooltip("請拖曳玩家身上的 AudioSource 進來")]
+    public AudioSource footstepAudioSource;
+
+    [Tooltip("走路的長音效 (可以塞 1~2 個讓它隨機挑選播放)")]
+    public AudioClip[] walkSounds;
+
+    [Tooltip("跑步的長音效 (可以塞 1~2 個讓它隨機挑選播放)")]
+    public AudioClip[] runSounds;
+
+    // 用來記錄前一幀是不是在跑步，如果狀態切換就要換音樂
+    private bool wasRunning = false;
+    // ==========================================
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
@@ -32,11 +46,9 @@ public class FPSController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // 【修改核心 2】：防呆機制。如果你忘記拖曳，自動尋找名為 CameraHolder 的子物件
         if (cameraHolder == null)
         {
             Transform foundHolder = transform.Find("CameraHolder");
@@ -46,7 +58,7 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("<color=red>[FPSController]</color> 找不到 CameraHolder！請確定你有建立這個空物件並拖入欄位！");
+                Debug.LogError("<color=red>[FPSController]</color> 找不到 CameraHolder！");
             }
         }
     }
@@ -70,11 +82,7 @@ public class FPSController : MonoBehaviour
 
                 rotationX -= mouseY;
                 rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-
-                // 【修改核心 3】：滑鼠上下看時，轉動的是 CameraHolder！不再是 Camera 本身了！
                 cameraHolder.localRotation = Quaternion.Euler(rotationX, 0, 0);
-
-                // 左右看時，轉動玩家本體
                 transform.rotation *= Quaternion.Euler(0, mouseX, 0);
             }
         }
@@ -85,7 +93,6 @@ public class FPSController : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
 
         float movementDirectionY = moveDirection.y;
-
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
@@ -94,7 +101,6 @@ public class FPSController : MonoBehaviour
         if (characterController.isGrounded)
         {
             moveDirection.y = -0.5f;
-
             if (canMove && Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
@@ -106,12 +112,69 @@ public class FPSController : MonoBehaviour
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
+
+        // 每幀呼叫處理腳步聲的方法
+        HandleFootsteps(isRunning);
     }
+
+    // ==========================================
+    // 【修改】：連續長音效播放邏輯核心
+    // ==========================================
+    private void HandleFootsteps(bool isRunning)
+    {
+        // 如果玩家不在地上、不能動、或遊戲暫停，就強制把聲音卡掉
+        if (!characterController.isGrounded || !canMove || isPaused)
+        {
+            if (footstepAudioSource.isPlaying) footstepAudioSource.Stop();
+            return;
+        }
+
+        // 取得玩家實際的「水平移動速度」
+        Vector3 horizontalVelocity = new Vector3(characterController.velocity.x, 0, characterController.velocity.z);
+        float currentSpeed = horizontalVelocity.magnitude;
+
+        // 如果真的有在移動
+        if (currentSpeed > 0.1f)
+        {
+            // 如果聲音沒在播，或者玩家從「走路」切換成「跑步」(或反過來)
+            if (!footstepAudioSource.isPlaying || wasRunning != isRunning)
+            {
+                PlayContinuousSound(isRunning);
+                wasRunning = isRunning;
+            }
+        }
+        else
+        {
+            // 如果玩家停下來了，而且聲音還在播，立刻強制截斷停止！
+            if (footstepAudioSource.isPlaying)
+            {
+                footstepAudioSource.Stop();
+            }
+        }
+    }
+
+    private void PlayContinuousSound(bool isRunning)
+    {
+        if (footstepAudioSource == null) return;
+
+        // 決定要用走路陣列還是跑步陣列
+        AudioClip[] clips = isRunning ? runSounds : walkSounds;
+        if (clips.Length == 0) return;
+
+        // 隨機抽一個音效
+        int randomIndex = Random.Range(0, clips.Length);
+
+        // 設定播放屬性並開始播放
+        footstepAudioSource.clip = clips[randomIndex];
+        footstepAudioSource.loop = true; // 【關鍵】：讓長音效自動無限循環
+        footstepAudioSource.pitch = Random.Range(0.95f, 1.05f); // 微微改變音調，避免聽覺疲勞
+        footstepAudioSource.Play();
+    }
+    // ==========================================
 
     void TogglePause()
     {
         isPaused = !isPaused;
-
         if (isPaused)
         {
             Time.timeScale = 0f;

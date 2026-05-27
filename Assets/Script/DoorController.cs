@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI; // 【新增】：引入 AI 導航系統
+using UnityEngine.AI;
 
 public class DoorController : MonoBehaviour
 {
@@ -38,6 +38,23 @@ public class DoorController : MonoBehaviour
     [Tooltip("Dolo 靠近多近時會自動觸發開門")]
     public float aiDetectRadius = 3.5f;
 
+    // ==========================================
+    // 【新增】：門的音效設定
+    // ==========================================
+    [Header("音效設定")]
+    [Tooltip("用來播放門開關聲音的發聲器 (請掛載 AudioSource 並拖曳進來)")]
+    public AudioSource doorAudioSource;
+
+    [Tooltip("門打開時的音效")]
+    public AudioClip openSound;
+
+    [Tooltip("門關上時的音效")]
+    public AudioClip closeSound;
+
+    [Tooltip("門上鎖/推不開時的音效 (例如：喀喀聲)")]
+    public AudioClip lockedSound;
+    // ==========================================
+
     private Vector3 closedPosition;
     private Vector3 openPosition;
     private Quaternion closedRotation;
@@ -46,9 +63,6 @@ public class DoorController : MonoBehaviour
     public bool isOpen = false;
     private bool isOpenedByAI = false;
 
-    // ==========================================
-    // 【新增】：用來記錄路障和前一次的開關狀態
-    // ==========================================
     private NavMeshObstacle navObstacle;
     private bool lastOpenState;
 
@@ -60,13 +74,12 @@ public class DoorController : MonoBehaviour
         openPosition = closedPosition + openOffset;
         openRotation = closedRotation * Quaternion.Euler(openRotationOffset);
 
-        // 抓取門身上的路障組件，並初始化狀態
         navObstacle = GetComponent<NavMeshObstacle>();
         lastOpenState = isOpen;
 
         if (navObstacle != null)
         {
-            navObstacle.enabled = !isOpen; // 如果一開始是關著的，就開啟路障
+            navObstacle.enabled = !isOpen;
         }
     }
 
@@ -84,16 +97,29 @@ public class DoorController : MonoBehaviour
         }
 
         // ==========================================
-        // 【新增】：自動同步路障狀態
+        // 【修改】：自動同步路障狀態與「開關門音效」
         // ==========================================
         if (isOpen != lastOpenState)
         {
+            // 處理 AI 路障
             if (navObstacle != null)
             {
-                // 門打開 -> 關閉路障 (讓 Dolo 走進來)
-                // 門關上 -> 開啟路障 (把路封死)
                 navObstacle.enabled = !isOpen;
             }
+
+            // 【新增】：處理開關門音效
+            if (doorAudioSource != null)
+            {
+                if (isOpen && openSound != null)
+                {
+                    doorAudioSource.PlayOneShot(openSound);
+                }
+                else if (!isOpen && closeSound != null)
+                {
+                    doorAudioSource.PlayOneShot(closeSound);
+                }
+            }
+
             lastOpenState = isOpen;
         }
 
@@ -165,15 +191,16 @@ public class DoorController : MonoBehaviour
         Vector3 localPlayerPos = transform.InverseTransformPoint(interactorPosition);
         bool isPlayerInFront = localPlayerPos.z > 0;
 
+        // 【修改】：處理單向門鎖住時的音效
         if (!isOpen && isOneWayDoor)
         {
-            if (canOpenFromFrontOnly && !isPlayerInFront)
+            if ((canOpenFromFrontOnly && !isPlayerInFront) || (!canOpenFromFrontOnly && isPlayerInFront))
             {
-                Debug.Log("<color=orange>[門]</color> 門從另一側被鎖上了，無法從這裡開啟！");
-                return;
-            }
-            if (!canOpenFromFrontOnly && isPlayerInFront)
-            {
+                // 播放上鎖/推不開的聲音
+                if (doorAudioSource != null && lockedSound != null)
+                {
+                    doorAudioSource.PlayOneShot(lockedSound);
+                }
                 Debug.Log("<color=orange>[門]</color> 門從另一側被鎖上了，無法從這裡開啟！");
                 return;
             }

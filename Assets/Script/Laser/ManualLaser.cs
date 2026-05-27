@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections; // 為了使用協程，必須引入這個
+using System.Collections;
 
 public class ManualLaser : MonoBehaviour, IInteractable
 {
@@ -15,13 +15,37 @@ public class ManualLaser : MonoBehaviour, IInteractable
     [Tooltip("如果按鈕本身會變色，把掛有 MaterialSwitcher 的物件拖來這裡")]
     public MaterialSwitcher visualFeedback;
 
+    // ==========================================
+    // 【新增】：按鈕與機關音效設定
+    // ==========================================
+    [Header("音效設定")]
+    [Tooltip("用來播放按鈕與機關聲音的 AudioSource (請掛在按鈕物件上並拖曳進來)")]
+    public AudioSource buttonAudioSource;
+
+    [Tooltip("按下按鈕瞬間的音效 (例如：喀喀聲)")]
+    public AudioClip pressSound;
+
+    [Tooltip("雷射成功連線時的音效 (選填，例如：叮！或啟動聲)")]
+    public AudioClip successSound;
+
+    [Tooltip("倒數結束雷射關閉的音效 (選填，例如：斷電聲)")]
+    public AudioClip failSound;
+    // ==========================================
+
     private bool isTimerRunning = false;  // 正在倒數中
     private bool isPermanentlyOn = false; // 是否已經成功連線常駐
 
     public void OnInteract(Transform interactor)
     {
-        // 1. 如果已經成功常駐開啟，或者正在倒數中，就不允許重複按
+        // 1. 核心防呆：如果已經成功常駐開啟，或者正在倒數中，就直接退回！
+        // (因為直接退回了，所以玩家狂按也不會執行到下面播放聲音的程式碼)
         if (isPermanentlyOn || isTimerRunning) return;
+
+        // 【新增】：確認可以按之後，播放按下按鈕的聲音
+        if (buttonAudioSource != null && pressSound != null)
+        {
+            buttonAudioSource.PlayOneShot(pressSound);
+        }
 
         // 2. 啟動計時器任務
         StartCoroutine(LaserTimerRoutine());
@@ -58,6 +82,13 @@ public class ManualLaser : MonoBehaviour, IInteractable
         {
             // 成功：保持開啟
             isPermanentlyOn = true;
+
+            // 【新增】：播放連線成功音效
+            if (buttonAudioSource != null && successSound != null)
+            {
+                buttonAudioSource.PlayOneShot(successSound);
+            }
+
             Debug.Log("<color=green>[機關]</color> 雷射成功連接接收器，已鎖定為常駐啟動！");
         }
         else
@@ -65,6 +96,12 @@ public class ManualLaser : MonoBehaviour, IInteractable
             // 失敗：關閉雷射
             if (targetLaser != null) targetLaser.isLaserOn = false;
             if (visualFeedback != null) visualFeedback.ToggleVisual(); // 把按鈕視覺切換回來
+
+            // 【新增】：播放失敗/斷電音效
+            if (buttonAudioSource != null && failSound != null)
+            {
+                buttonAudioSource.PlayOneShot(failSound);
+            }
 
             Debug.Log("<color=orange>[機關]</color> 未能在時限內連接接收器，雷射已關閉。");
         }
